@@ -29,6 +29,50 @@ CREATE TABLE user_addresses (
     is_primary BOOLEAN DEFAULT 0,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
+-- 1. Create the product_variants table
+-- This table allows for different versions of the same product (e.g., different sizes, colors, weights)
+-- Each variant can have its own stock quantity and price modifier.
+CREATE TABLE product_variants (
+    variant_id INTEGER PRIMARY KEY auto_increment,
+    product_id INTEGER NOT NULL,
+    sku VARCHAR(255) UNIQUE NOT NULL, -- Stock Keeping Unit, unique identifier for each variant
+    name VARCHAR(100) NOT NULL, -- e.g., "Size", "Color", "Weight"
+    value VARCHAR(100) NOT NULL, -- e.g., "Large", "Red", "1kg"
+    price_modifier DECIMAL(10, 2) DEFAULT 0, -- Price adjustment for this variant
+    stock_quantity INTEGER DEFAULT 0,
+    image_url VARCHAR(255),
+    is_active BOOLEAN DEFAULT 1,
+    FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
+);
+
+-- 2. Create the delivery_slots table
+-- This table manages the available time windows for order delivery.
+-- It's crucial for scheduling and managing logistics.
+CREATE TABLE delivery_slots (
+    slot_id INTEGER PRIMARY KEY auto_increment,
+    slot_date DATE NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    max_orders INTEGER DEFAULT 50, -- Maximum number of orders for this slot
+    current_orders INTEGER DEFAULT 0, -- Current number of orders booked
+    is_active BOOLEAN DEFAULT 1
+);
+
+-- 3. Create the delivery_addresses table
+-- This table stores multiple delivery addresses for a single user,
+-- separate from their billing or primary address.
+CREATE TABLE delivery_addresses (
+    delivery_address_id INTEGER PRIMARY KEY auto_increment,
+    user_id INTEGER NOT NULL,
+    address_line1 VARCHAR(255) NOT NULL,
+    address_line2 VARCHAR(255),
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    postal_code VARCHAR(20) NOT NULL,
+    country VARCHAR(100) DEFAULT 'Australia',
+    is_default BOOLEAN DEFAULT 0, -- Flag for the user's preferred delivery address
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
 
 -- Product categories table
 CREATE TABLE categories (
