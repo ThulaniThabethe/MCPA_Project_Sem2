@@ -16,7 +16,7 @@
 ### USE
 - cd Desktop (it safe to save it on Desktop, Easy Access)
 - ls (check files around you)
-- git clone https://github.com/Gob20k/Menzi_Tutoring_Systems.git\
+- git clone https://github.com/ThulaniThabethe/MCPA_Project_Sem2.git
 - ls
 - cd Menzi_Tutoring_Systems/
 
