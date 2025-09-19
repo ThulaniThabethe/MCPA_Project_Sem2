@@ -29,6 +29,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ClothingDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FoodDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PromotionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StoreLocatorActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
