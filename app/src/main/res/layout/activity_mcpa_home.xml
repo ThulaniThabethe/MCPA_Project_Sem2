@@ -2,80 +2,188 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MCPA_Home">
-
-    <ImageView
-        android:id="@+id/HomeCarosoul"
-        android:layout_width="403dp"
-        android:layout_height="127dp"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="78dp"
-        tools:srcCompat="@tools:sample/avatars" />
+    tools:context=".MCPASignupActivity">
 
     <TextView
-        android:id="@+id/ClothingLink"
+        android:id="@+id/my_wishlist_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clothing"
-        tools:layout_editor_absoluteX="210dp"
-        tools:layout_editor_absoluteY="312dp" />
-
-    <ImageButton
-        android:id="@+id/SaleLinkImageButton"
-        android:layout_width="414dp"
-        android:layout_height="103dp"
-        tools:layout_editor_absoluteX="-2dp"
-        tools:layout_editor_absoluteY="385dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/RecentPurchaseCarosol"
-        android:layout_width="414dp"
-        android:layout_height="153dp"
-        tools:layout_editor_absoluteX="-2dp"
-        tools:layout_editor_absoluteY="532dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <SearchView
-        android:layout_width="388dp"
-        android:layout_height="87dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="213dp" />
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:drawableStart="@drawable/ic_heart"
+        android:drawablePadding="8dp"
+        android:text="My Wishlist"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ShoesLink"
+        android:id="@+id/my_orders_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shoes"
-        tools:layout_editor_absoluteX="292dp"
-        tools:layout_editor_absoluteY="312dp" />
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="My Orders"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/GroceriesLink"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/food_button"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#D3D3D3"
+        android:text="Food"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_wishlist_text" />
+
+    <Button
+        android:id="@+id/women_button"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#D3D3D3"
+        android:text="Women"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/food_button" />
+
+    <Button
+        android:id="@+id/men_button"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#D3D3D3"
+        android:text="Men"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/women_button" />
+
+    <Button
+        android:id="@+id/kids_button"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#D3D3D3"
+        android:text="Kids"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/men_button" />
+
+    <LinearLayout
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Groceries"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="312dp" />
+        android:orientation="horizontal"
+        android:background="#D3D3D3"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/FruitVegLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fruit&Veg"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="312dp" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/ProfileLinkButton"
-        android:layout_width="47dp"
-        android:layout_height="67dp"
-        tools:layout_editor_absoluteX="365dp"
-        tools:layout_editor_absoluteY="1dp"
-        tools:srcCompat="@tools:sample/avatars" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_shop" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shop"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_contact_us" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact us"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_cart" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cart"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_account" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
