@@ -1,4 +1,4 @@
-package com.example.my_mcpa_views;
+package com.example.mcpa_project_sem22;
 
 import android.os.Bundle;
 
