@@ -1,4 +1,4 @@
-package com.example.my_mcpa_views;
+package com.example.mcpa_project_sem22;
 
 import android.os.Bundle;
 
@@ -8,13 +8,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class McpaSignup extends AppCompatActivity {
+public class MCBPA_Staff extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_mcpa_signup);
+        setContentView(R.layout.activity_mcbpa_staff);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="store_areas">
+        <item>All Areas</item>
+        <item>Sydney CBD</item>
+        <item>Surry Hills</item>
+        <item>Bondi Junction</item>
+    </string-array>
+</resources>
