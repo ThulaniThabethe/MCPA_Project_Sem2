@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MCPA SEM 2 Proj Woolworths"
+rootProject.name = "My_MCPA_VIEWS"
 include(":app")
  

@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mcpasem2projwoolworths"
+    namespace = "com.example.my_mcpa_views"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.mcpasem2projwoolworths"
+        applicationId = "com.example.my_mcpa_views"
         minSdk = 29
         targetSdk = 36
         versionCode = 1
