@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mcpasem2projwoolworths"
+    namespace = "com.example.mcpa_project_sem22"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.mcpasem2projwoolworths"
+        applicationId = "com.example.my_mcpa_views"
         minSdk = 29
         targetSdk = 36
         versionCode = 1
@@ -37,10 +37,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.volley)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    // Volley for networking
-    implementation("com.android.volley:volley:1.2.1")
 }
