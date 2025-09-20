@@ -1,0 +1,20 @@
+
+### Step 1: Backend Setup (XAMPP & PHP)
+1.  **Project Location**: You need to store your PHP scripts inside the web server's root directory. For XAMPP, this is the `htdocs/` folder. You will place your `register.php` and `login.php` files into a subdirectory you've created, such as `/opt/lampp/htdocs/MCPA/`.
+2.  **Database Connection**: You've configured your PHP scripts to connect to your local MySQL database. The scripts are set up with the server (`localhost`), username (`root`), and a **blank password** (`""`) for local development.
+3.  **Script Logic**:
+    * **`register.php`**: This script receives the user's `email` and `password`, securely **hashes the password**, and inserts the new user into the `users` table.
+    * **`login.php`**: This script receives the user's `email` and `password`, finds the corresponding user in the database, and uses `password_verify()` to securely **check if the provided password matches the stored hash**.
+
+***
+
+### Step 2: Frontend Setup (Android App)
+1.  **Dependencies**: You added the **Volley** library dependency to your `app/build.gradle.kts` file to handle network requests.
+2.  **Network Permissions**: You added the `INTERNET` permission to your `AndroidManifest.xml` file to allow your app to connect to the internet.
+3.  **Cleartext Traffic**: To fix connection errors with your local HTTP server, you correctly allowed unencrypted HTTP connections by adding `android:usesCleartextTraffic="true"` to your `<application>` tag.
+
+***
+
+### Step 3: Local Network Communication
+1.  **Finding IP Address**: You used `ifconfig` in your terminal to find your computer's **local private IP address** (e.g., `172.20.10.6`), which is necessary for the Android emulator to connect to your web server on the same local network.
+2.  **URL Configuration**: You updated the URL in both your `MCPASignupActivity.java` and `MainActivity.java` files to point to the correct location of your PHP scripts, for example, `"http://172.20.10.6/MCPA/register.php"` for registration and `"http://172.20.10.6/MCPA/login.php"` for login.
