@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
      */
     private void registerUser(String firstName, String lastName, String email, String password) {
         // NOTE: Use your computer's local network IP address, not 127.0.0.1, to connect from the emulator.
-        String url = "http://192.168.0.205/MCPA/register.php";
+        String url = "http://192.168.0.188/MCPA/register.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
