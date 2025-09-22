@@ -1,11 +1,13 @@
 package com.example.mcpa_project_sem22;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView; // Make sure to import TextView
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +32,7 @@ public class MCPASignupActivity extends AppCompatActivity {
     // Declare UI components based on your XML file
     private EditText emailInput, passwordInput, confirmPasswordInput;
     private Button clearButton, createAccountButton;
+    private TextView alreadyRegisteredLink; // Declare the new TextView
 
     private RequestQueue requestQueue;
 
@@ -45,6 +48,7 @@ public class MCPASignupActivity extends AppCompatActivity {
         confirmPasswordInput = findViewById(R.id.confirm_password_input);
         clearButton = findViewById(R.id.clear_button);
         createAccountButton = findViewById(R.id.create_account_button);
+        alreadyRegisteredLink = findViewById(R.id.already_registered_link); // Initialize the new TextView
 
         // Initialize Volley's RequestQueue
         requestQueue = Volley.newRequestQueue(this);
@@ -81,6 +85,17 @@ public class MCPASignupActivity extends AppCompatActivity {
                 confirmPasswordInput.setText("");
             }
         });
+
+        // Add click listener for the "Already have an account? Login" link
+        alreadyRegisteredLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Navigate back to the login activity
+                Intent intent = new Intent(MCPASignupActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish(); // Close the current activity so the user can't go back to it
+            }
+        });
     }
 
     /**
@@ -109,6 +124,13 @@ public class MCPASignupActivity extends AppCompatActivity {
                                 String errorMessage = jsonResponse.getString("message");
                                 Toast.makeText(MCPASignupActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                                 Log.e(TAG, "Server-side registration failed: " + errorMessage);
+
+                                // If the email already exists, redirect to login page
+                                if (errorMessage.equals("Email already registered.")) {
+                                    Intent intent = new Intent(MCPASignupActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
                             }
                         } catch (JSONException e) {
                             // On JSON parsing error
@@ -141,9 +163,6 @@ public class MCPASignupActivity extends AppCompatActivity {
                 // The keys here must match the $_POST keys in your register.php script
                 params.put("email", email);
                 params.put("password", password);
-                // The PHP script also needs 'first_name' and 'last_name'.
-                // You'll need to add them to your XML or make them optional in your PHP script.
-                // For now, let's assume your PHP script is updated to just use email and password.
                 return params;
             }
         };
