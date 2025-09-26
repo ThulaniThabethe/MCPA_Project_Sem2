@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Register_Page</string>
+    <string name="password_tips">Password Tips:</string>
+    <string name="password_length">* Use at least 8 characters</string>
+    <string name="password_content">* include a mix of letters, symbols and numbers</string>
+    <string name="password_ex">* Don\'t use easily guessable information (e.g birthdays)</string>
+    <string name="email_address">Email address</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="password">Password</string>
+    <string name="password2">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="enter_password">Re-enter your password</string>
+    <string name="clear_btn">Clear</string>
+    <string name="create_btn">Create account</string>
+    <string name="tc_btn">Terms &amp; Conditions</string>
+    <string name="privacy_btn">Privacy policy</string>
+</resources>

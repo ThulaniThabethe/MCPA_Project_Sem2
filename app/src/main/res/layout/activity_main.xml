@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/email_address"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-black"
+            android:background="@null"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/enter_email"
+            android:textSize="11sp"
+            android:background="@drawable/rounded_corner"
+            android:padding="18dp"
+            android:inputType="textEmailAddress"
+            android:id="@+id/Email_input"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:helperText="We'll send a verification link to this email"
+            app:helperTextTextColor="@android:color/darker_gray"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-black"
+            android:background="@null"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/password2"
+            android:textSize="11sp"
+            android:background="@drawable/rounded_corner"
+            android:padding="18dp"
+            android:inputType="textPassword"
+            android:id="@+id/password_input"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:helperText="Password must be at least 8 characters"
+            app:helperTextTextColor="@android:color/darker_gray"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm_password"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/black"
+            android:background="@null"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/enter_password"
+            android:textSize="11sp"
+            android:background="@drawable/rounded_corner"
+            android:padding="18dp"
+            android:inputType="textPassword"
+            android:id="@+id/ConfirmPassword_input"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:helperText="Please ensure both passwords match"
+            android:layout_marginBottom="-5dp"
+            app:helperTextTextColor="@android:color/darker_gray"/>
+
+        <LinearLayout
+            android:layout_width="390dp"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/create_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="25dp">
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/clear_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/clear_button"
+
+                android:text="@string/clear_btn"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:backgroundTint="@null" />
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/create_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_btn"
+                android:text="@string/create_btn"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:backgroundTint="@null" />
+
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password_tips"
+            android:fontFamily="sans-serif-black"
+            android:textSize="25sp"
+            android:background="@null"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password_length"
+            android:textSize="15sp"
+            android:background="@null"
+            android:layout_marginTop="15dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password_content"
+            android:textSize="15sp"
+            android:background="@null"
+            android:layout_marginTop="15dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password_ex"
+            android:textSize="15sp"
+            android:background="@null"
+            android:layout_marginTop="15dp"/>
+
+        <LinearLayout
+            android:layout_width="380dp"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/create_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/terms_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:text="@string/tc_btn"
+                android:textColor="@color/black"
+                android:background="@drawable/rounded_corner"
+                android:textSize="15sp"
+                app:backgroundTint="@null"/>
+
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/privacy_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:text="@string/privacy_btn"
+                android:textColor="@color/black"
+                android:background="@drawable/rounded_corner"
+                android:textSize="15sp"
+                app:backgroundTint="@null"/>
+
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>
