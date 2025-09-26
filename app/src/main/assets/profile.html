@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Woolworths</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="login-container" id="profileDetailsPage">
+        
+        <div class="header-section">
+            <a href="index.html" class="close-btn"><i class="fa-solid fa-xmark"></i></a>
+            <h1>My Profile</h1>
+        </div>
+
+        <p class="subtitle">View and update your personal details.</p>
+
+        <div class="profile-details-area">
+            
+            <div class="profile-group">
+                <label>Email Address</label>
+                <p id="profileEmailDisplay" class="profile-value"></p>
+            </div>
+            
+            <div class="profile-group">
+                <label>Full Name</label>
+                <p id="profileFullNameDisplay" class="profile-value"></p>
+            </div>
+            
+            <div class="profile-group">
+                <label>Contact Number</label>
+                <p id="profileContactDisplay" class="profile-value"></p>
+            </div>
+
+            <div class="profile-group">
+                <label>Date of Birth</label>
+                <p id="profileDOBDisplay" class="profile-value"></p>
+            </div>
+            
+            <div class="profile-group promo-status">
+                <label>Promotion Subscriptions</label>
+                <p><i class="fa-solid fa-check-circle check-icon"></i> Woolworths Offers</p>
+                <p><i class="fa-solid fa-check-circle check-icon"></i> Financial Services</p>
+            </div>
+
+        </div>
+        
+        <div class="button-actions">
+            <button id="editDetailsBtn" class="black-button">Edit Personal Details</button>
+            <button id="logoutBtn" class="grey-button" onclick="logoutUser()">Sign Out</button>
+        </div>
+        
+        <div class="footer-links">
+            <a href="forgot_password.html">Change Password</a>
+        </div>
+
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
