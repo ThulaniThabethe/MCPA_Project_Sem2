@@ -24,16 +24,17 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
     @NonNull
     @Override
     public StoreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_store, parent, false);
-        return new StoreViewHolder(view);
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_store, parent, false);
+        return new StoreViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull StoreViewHolder holder, int position) {
         Store store = storeList.get(position);
-        holder.storeName.setText(store.getName());
-        holder.storeAddress.setText(store.getAddress());
-        holder.storePhone.setText(store.getPhone());
+        holder.nameTextView.setText(store.getName());
+        holder.addressTextView.setText(store.getAddress());
+        holder.phoneTextView.setText(store.getPhone());
     }
 
     @Override
@@ -41,14 +42,16 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
         return storeList.size();
     }
 
-    public static class StoreViewHolder extends RecyclerView.ViewHolder {
-        TextView storeName, storeAddress, storePhone;
+    static class StoreViewHolder extends RecyclerView.ViewHolder {
+        TextView nameTextView;
+        TextView addressTextView;
+        TextView phoneTextView;
 
-        public StoreViewHolder(@NonNull View itemView) {
-            super(itemView);
-            storeName = itemView.findViewById(R.id.store_name);
-            storeAddress = itemView.findViewById(R.id.store_address);
-            storePhone = itemView.findViewById(R.id.store_phone);
+        StoreViewHolder(View view) {
+            super(view);
+            nameTextView = view.findViewById(R.id.store_name_text_view);
+            addressTextView = view.findViewById(R.id.store_address_text_view);
+            phoneTextView = view.findViewById(R.id.store_phone_text_view);
         }
     }
 }

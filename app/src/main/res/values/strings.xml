@@ -1,3 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My_MCPA_VIEWS</string>
+    <string name="app_name">MCPA_Project_Sem22</string>
+    
+    <!-- Common UI Strings -->
+    <string name="welcome_message">Welcome to\nWoolworths</string>
+    <string name="sign_in">Sign In</string>
+    <string name="register">Register</string>
+    <string name="just_browsing">Just browsing</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="price">Price</string>
+    <string name="home">Home</string>
+    <string name="contact_us">Contact us</string>
+    <string name="cart">Cart</string>
+    <string name="account">Account</string>
+    <string name="shop">Shop</string>
+    
+    <!-- Home Activity Strings -->
+    <string name="my_wishlist">My Wishlist</string>
+    <string name="my_orders">My Orders</string>
+    <string name="food">Food</string>
+    <string name="women">Women</string>
+    <string name="men">Men</string>
+    <string name="kids">Kids</string>
+    <string name="browse_products">Browse Products</string>
+    
+    <!-- Checkout Activity Strings -->
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="complete_purchase">Complete your purchase</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="credit_card">Credit Card</string>
+    <string name="cash">Cash</string>
+    <string name="gift_card">Gift Card</string>
+    <string name="select_payment_method">Select your preferred payment method.</string>
+    <string name="coupon_code">Coupon Code</string>
+    <string name="apply_coupon">Apply a coupon for discounts.</string>
+    <string name="cancel">Cancel</string>
+    <string name="save_for_later">Save for Later</string>
+    <string name="proceed_to_review">Proceed to Review Order</string>
+    <string name="shipping_address">Shipping Address</string>
+    <string name="payment_details">Payment Details</string>
+    <string name="place_order">Place Order</string>
+    
+    <!-- Cart Activity Strings -->
+    <string name="continue_shopping">Continue Shopping</string>
+    <string name="checkout">Checkout</string>
+    
+    <!-- Manage Products Strings -->
+    <string name="add_product">Add Product</string>
+    
+    <!-- Test Activity Strings -->
+    <string name="hello_test">Hello, Test!</string>
+    
+    <!-- Missing String Resources -->
+    <string name="product_name">Product Name</string>
+    <string name="description">Description</string>
+    <string name="save_product">Save Product</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="manage_products">Manage Products</string>
+    <string name="manage_categories">Manage Categories</string>
+    <string name="view_orders">View Orders</string>
+    <string name="total">Total</string>
+    <string name="shipping_information">Shipping Information</string>
+    <string name="full_name">Full Name</string>
+    <string name="address">Address</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="continue_as_guest">Continue as Guest</string>
+    <string name="welcome">Welcome</string>
+    <string name="view_cart">View Cart</string>
+    <string name="view_profile">View Profile</string>
+    <string name="logout">Logout</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="user_profile">User Profile</string>
+    <string name="name">Name</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="view_order_history">View Order History</string>
+    <string name="search_stores">Search Stores</string>
+    <string name="quantity">Quantity</string>
+    <string name="category_name">Category Name</string>
+    <string name="category_description">Category Description</string>
+    <string name="view_products">View Products</string>
+    <string name="product_price">Price</string>
+    <string name="promotion_title">Promotion Title</string>
+    <string name="promotion_description">Promotion Description</string>
+    <string name="discount">Discount</string>
+    <string name="view_promotion">View Promotion</string>
+    <string name="store_name">Store Name</string>
+    <string name="store_address">Store Address</string>
+    <string name="store_hours">Store Hours</string>
+    <string name="view_store">View Store</string>
 </resources>

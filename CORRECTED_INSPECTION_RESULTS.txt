@@ -1,0 +1,23 @@
+Inspection Results
+Android Lint: Correctness
+Obsolete Android Gradle Plugin Version
+Obsolete Gradle Dependency
+Valid Full Backup Content File
+data_extraction_rules.xml
+cache is not in an included path
+backup_guide is not in an included path
+com.example.app_preferences is not in an included path
+no_transfer/ is not in an included path
+Android Lint: Internationalization
+Android Lint: Performance
+JSON and JSON5
+Compliance with JSON standard
+launch.json
+JSON standard does not allow comments.
+JSON standard does not allow comments.
+JSON standard does not allow comments.
+JVM languages
+Java
+Markdown
+Proofreading
+XML

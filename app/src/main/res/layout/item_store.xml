@@ -3,31 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:layout_marginBottom="8dp"
-    android:background="@drawable/card_background">
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/store_name"
+        android:id="@+id/storeNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Store Name"
-        android:textColor="@android:color/black"
+        android:text="@string/store_name"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/store_address"
+        android:id="@+id/storeAddressTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Store Address"
+        android:layout_marginTop="4dp"
+        android:text="@string/store_address"
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/store_phone"
+        android:id="@+id/storeHoursTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Store Phone Number"
+        android:layout_marginTop="4dp"
+        android:text="@string/store_hours"
         android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/viewStoreButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/view_store" />
 
 </LinearLayout>

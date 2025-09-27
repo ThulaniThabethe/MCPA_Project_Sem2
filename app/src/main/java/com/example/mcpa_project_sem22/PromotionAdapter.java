@@ -31,7 +31,6 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.Prom
         holder.titleTextView.setText(promotion.getTitle());
         holder.descriptionTextView.setText(promotion.getDescription());
         holder.discountTextView.setText(promotion.getStartDate());
-        holder.expiryTextView.setText(promotion.getEndDate());
     }
 
     @Override
@@ -43,19 +42,19 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.Prom
         TextView titleTextView;
         TextView descriptionTextView;
         TextView discountTextView;
-        TextView expiryTextView;
 
         public PromotionViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleTextView = itemView.findViewById(R.id.promotion_title);
-            descriptionTextView = itemView.findViewById(R.id.promotion_description);
-            discountTextView = itemView.findViewById(R.id.promotion_discount);
-            expiryTextView = itemView.findViewById(R.id.promotion_expiry);
+            titleTextView = itemView.findViewById(R.id.promotionTitleTextView);
+            descriptionTextView = itemView.findViewById(R.id.promotionDescriptionTextView);
+            discountTextView = itemView.findViewById(R.id.promotionDiscountTextView);
         }
     }
 
     public void setPromotionList(List<Promotion> promotionList) {
+        int oldSize = this.promotionList.size();
         this.promotionList = promotionList;
-        notifyDataSetChanged();
+        notifyItemRangeRemoved(0, oldSize);
+        notifyItemRangeInserted(0, promotionList.size());
     }
 }
