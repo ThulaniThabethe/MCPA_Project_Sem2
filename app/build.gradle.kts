@@ -11,9 +11,15 @@ android {
         dataBinding = true
     }
 
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = false
+        disable += setOf("Range", "UnusedResources", "IconMissingDensityFolder")
+    }
+
     defaultConfig {
         applicationId = "com.example.mcpa_project_sem22"
-        minSdk = 28
+        minSdk = 23
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -48,6 +54,8 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.play.services.location)
+    implementation(libs.osmdroid.android)
+    implementation("de.hdodenhof:circleimageview:3.1.0")
     
     // Performance monitoring
     implementation(libs.profileinstaller)

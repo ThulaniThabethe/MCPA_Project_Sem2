@@ -36,7 +36,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.productName.setText(product.getName());
-        holder.productDescription.setText(product.getDescription());
         // Use string formatting instead of String.valueOf for better performance
         holder.productPrice.setText(String.format(Locale.getDefault(), "$%.2f", product.getPrice()));
     }
@@ -56,13 +55,12 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
-        TextView productName, productDescription, productPrice;
+        TextView productName, productPrice;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            productName = itemView.findViewById(R.id.product_name);
-            productDescription = itemView.findViewById(R.id.product_description);
-            productPrice = itemView.findViewById(R.id.product_price);
+            productName = itemView.findViewById(R.id.productNameTextView);
+            productPrice = itemView.findViewById(R.id.productPriceTextView);
         }
     }
 }

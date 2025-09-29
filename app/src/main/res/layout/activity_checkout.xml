@@ -40,6 +40,28 @@
             android:inputType="textPostalAddress"
             android:autofillHints="postalAddress" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Payment Information"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/paymentMethodTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Credit Card (**** **** **** 1234)" />
+
+        <Button
+            android:id="@+id/editCardButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Edit Card Details" />
+
         <Button
             android:id="@+id/placeOrderButton"
             android:layout_width="match_parent"
