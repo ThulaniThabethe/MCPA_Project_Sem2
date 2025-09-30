@@ -1,0 +1,372 @@
+-- Create the database
+CREATE DATABASE IF NOT EXISTS Woolworths;
+
+-- Use the newly created database
+USE Woolworths;
+
+--
+-- Users/Customers table
+--
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    title VARCHAR(10),
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(20),
+    date_of_birth DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_login DATETIME,
+    is_active BOOLEAN DEFAULT TRUE
+);
+
+-- Note: The following ALTER TABLE statements are integrated into the CREATE TABLE above
+-- to ensure proper column order from the start.
+
+--
+-- User addresses table
+--
+CREATE TABLE user_addresses (
+    address_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    address_line1 VARCHAR(255) NOT NULL,
+    address_line2 VARCHAR(255),
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    postal_code VARCHAR(20) NOT NULL,
+    country VARCHAR(100) DEFAULT 'Australia',
+    is_primary BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+--
+-- Product categories table
+--
+CREATE TABLE categories (
+    category_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description TEXT, -- Changed from NVARCHAR(MAX) to TEXT
+    parent_category_id INT,
+    image_url VARCHAR(255),
+    FOREIGN KEY (parent_category_id) REFERENCES categories(category_id)
+);
+
+--
+-- Products table
+--
+CREATE TABLE products (
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    description TEXT, -- Changed from NVARCHAR(MAX) to TEXT
+    price DECIMAL(10, 2) NOT NULL,
+    discounted_price DECIMAL(10, 2),
+    category_id INT NOT NULL,
+    brand VARCHAR(100),
+    unit VARCHAR(50), -- e.g., "each", "kg", "500g pack"
+    stock_quantity INT DEFAULT 0,
+    min_order_quantity INT DEFAULT 1,
+    max_order_quantity INT DEFAULT 10,
+    image_url VARCHAR(255),
+    rating DECIMAL(2, 1) DEFAULT 0,
+    review_count INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
+--
+-- 1. Create the product_variants table
+--
+CREATE TABLE product_variants (
+    variant_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT NOT NULL,
+    sku VARCHAR(255) UNIQUE NOT NULL, -- Stock Keeping Unit
+    name VARCHAR(100) NOT NULL, -- e.g., "Size", "Color"
+    value VARCHAR(100) NOT NULL, -- e.g., "Large", "Red"
+    price_modifier DECIMAL(10, 2) DEFAULT 0,
+    stock_quantity INT DEFAULT 0,
+    image_url VARCHAR(255),
+    is_active BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
+);
+
+--
+-- 2. Create the delivery_slots table
+--
+CREATE TABLE delivery_slots (
+    slot_id INT PRIMARY KEY AUTO_INCREMENT,
+    slot_date DATE NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    max_orders INT DEFAULT 50,
+    current_orders INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE
+);
+
+--
+-- 3. Create the delivery_addresses table (Note: user_addresses already exists, 
+-- this is a common data modeling redundancy. Using this for completeness)
+--
+CREATE TABLE delivery_addresses (
+    delivery_address_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    address_line1 VARCHAR(255) NOT NULL,
+    address_line2 VARCHAR(255),
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    postal_code VARCHAR(20) NOT NULL,
+    country VARCHAR(100) DEFAULT 'Australia',
+    is_default BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+--
+-- Shopping cart table
+--
+CREATE TABLE cart (
+    cart_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+--
+-- Orders table
+--
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    status VARCHAR(50) DEFAULT 'Pending',
+    shipping_address_id INT NOT NULL,
+    payment_method VARCHAR(50),
+    payment_status VARCHAR(50) DEFAULT 'Pending',
+    tracking_number VARCHAR(100),
+    estimated_delivery DATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (shipping_address_id) REFERENCES user_addresses(address_id)
+);
+
+--
+-- Order items table
+--
+CREATE TABLE order_items (
+    order_item_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+--
+-- Payments table
+--
+CREATE TABLE payments (
+    payment_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT NOT NULL,
+    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    amount DECIMAL(10, 2) NOT NULL,
+    payment_method VARCHAR(50) NOT NULL,
+    transaction_id VARCHAR(255),
+    status VARCHAR(50) DEFAULT 'Pending',
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+
+--
+-- Product reviews table
+--
+CREATE TABLE reviews (
+    review_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT NOT NULL,
+    user_id INT NOT NULL,
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    comment TEXT, -- Changed from NVARCHAR(MAX) to TEXT
+    review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_approved BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+--
+-- Wishlist table
+--
+CREATE TABLE wishlist (
+    wishlist_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    added_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+--
+-- Promotions table
+--
+CREATE TABLE promotions (
+    promotion_id INT PRIMARY KEY AUTO_INCREMENT,
+    code VARCHAR(50) UNIQUE NOT NULL,
+    description TEXT, -- Changed from NVARCHAR(MAX) to TEXT
+    discount_type VARCHAR(20),
+    discount_value DECIMAL(10, 2) NOT NULL,
+    min_order_amount DECIMAL(10, 2) DEFAULT 0,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    usage_limit INT DEFAULT NULL,
+    times_used INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE
+);
+
+
+----
+
+CREATE TABLE product_images (
+    image_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    product_id INT(11) NOT NULL, -- This column will link to the products table
+    image_url VARCHAR(255) NOT NULL,
+    is_main BOOLEAN DEFAULT FALSE,
+    -- CORRECTED LINE: References products(product_id) instead of products(id)
+    FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE 
+);
+
+
+----
+
+-- Insert the primary category (Meat, Poultry & Fish)
+INSERT INTO categories (name) 
+VALUES ('Meat, Poultry & Fish'); 
+
+---
+-- To find the ID of the category you just inserted, you can run:
+-- SELECT category_id FROM categories WHERE name = 'Meat, Poultry & Fish';
+
+-- Use the correct Category ID found in the 'categories' table.
+-- **REPLACE 7 WITH THE ACTUAL ID FOR 'Meat, Poultry & Fish'**
+
+-- 1. Insert the product
+INSERT INTO products (
+    name, 
+    description, 
+    price, 
+    category_id, 
+    stock_quantity, 
+    is_active 
+) VALUES (
+    'Matured Thick Cut Beef Sirloin Steak', 
+    'Perfectly aged and thick-cut sirloin steak, ideal for grilling or pan-frying.', 
+    129.99, 
+    1, -- Use the verified Category ID for Beef (which you stated is 1)
+    50, 
+    1
+);
+-- After running this, PHPMyAdmin will display the ID that was created.
+-- **NOTE DOWN THE NEW product_id (e.g., let's assume it created ID 5)**
+
+-- 2. Insert the images using the actual, known product ID (e.g., 5)
+-- REPLACE THE 5 BELOW WITH THE ACTUAL ID YOU JUST CREATED!
+INSERT INTO product_images (product_id, image_url, is_main) VALUES
+(
+    5, -- *** USE THE ACTUAL product_id GENERATED IN STEP 1 ***
+    'ASSETS/images/beef_sirloin_steak_main.png', 
+    TRUE
+),
+(
+    5, -- Repeat the ID for secondary images
+    'ASSETS/images/beef_sirloin_steak_2.png', 
+    FALSE
+),
+(
+    5, -- Repeat the ID for secondary images
+    'ASSETS/images/beef_sirloin_steak_3.png', 
+    FALSE
+);
+
+-- SQL to create the 'stores' table
+CREATE TABLE stores (
+    store_id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    address_line_1 VARCHAR(255) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    postal_code VARCHAR(10) NOT NULL,
+    is_active TINYINT(1) NOT NULL DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE stores
+ADD COLUMN latitude DECIMAL(10, 8) NULL AFTER postal_code,
+ADD COLUMN longitude DECIMAL(11, 8) NULL AFTER latitude;
+
+ALTER TABLE stores
+ADD COLUMN map_url VARCHAR(255) NULL AFTER postal_code;
+
+
+INSERT INTO categories (name, description)
+VALUES ('Ready Meals', 'Pre-prepared meals and quick-to-cook items, perfect for fast dinners.');
+
+INSERT INTO products 
+    (category_id, name, price, unit, image_url, stock_quantity, is_active) 
+VALUES 
+    (5, 'Mini Cheese & Tomato Pizzas 4 x 80 g', 79.99, '320 g', 'Assets/Images/mini_pizzas.jpg', 50, 1),
+    (5, 'Mature Cheddar & Caramelised Onion Quiche 2 x 150 g', 89.99, '300 g', 'Assets/Images/onion_quiche.jpg', 45, 1),
+    (5, 'Chicken Pie 580 g', 129.99, '580 g', 'Assets/Images/chicken_pie.jpg', 60, 1),
+    (5, 'Beef Steak Pie 580 g', 129.99, '580 g', 'Assets/Images/beef_steak_pie.jpg', 55, 1);
+
+
+-- 1. Insert image for Mini Cheese & Tomato Pizzas
+INSERT INTO product_images (product_id, image_url, is_main)
+VALUES (
+    (SELECT product_id FROM products WHERE name = 'Mini Cheese & Tomato Pizzas 4 x 80 g' AND category_id = 2),
+    'Assets/Images/mini_pizzas.jpg', 
+    1
+);
+
+-- 2. Insert image for Mature Cheddar & Caramelised Onion Quiche
+INSERT INTO product_images (product_id, image_url, is_main)
+VALUES (
+    (SELECT product_id FROM products WHERE name = 'Mature Cheddar & Caramelised Onion Quiche 2 x 150 g' AND category_id = 2),
+    'Assets/Images/onion_quiche.jpg',
+    1
+);
+
+-- 3. Insert image for Chicken Pie
+INSERT INTO product_images (product_id, image_url, is_main)
+VALUES (
+    (SELECT product_id FROM products WHERE name = 'Chicken Pie 580 g' AND category_id = 2),
+    'Assets/Images/chicken_pie.jpg',
+    1
+);
+
+-- 4. Insert image for Beef Steak Pie
+INSERT INTO product_images (product_id, image_url, is_main)
+VALUES (
+    (SELECT product_id FROM products WHERE name = 'Beef Steak Pie 580 g' AND category_id = 2),
+    'Assets/Images/beef_steak_pie.jpg',
+    1
+);
+
+
+
+
+
+
+Server name
+woolworths-server
+
+Database name
+woolworths-database
+
+Region
+UAE North
+
+Username
+hgbaoecboj
+
+Password
+hssrRAOAZvQr$UyT

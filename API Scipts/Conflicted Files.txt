@@ -1,0 +1,12 @@
+CONFLICT (content): Merge conflict in Controllers/StudentController.cs
+Auto-merging Menzi_Tutoring_Systems.csproj
+CONFLICT (content): Merge conflict in Menzi_Tutoring_Systems.csproj
+Auto-merging Models/DbContextClass.cs
+Auto-merging Views/Shared/_Layout.cshtml
+Auto-merging Views/Student/Schedule.cshtml
+CONFLICT (content): Merge conflict in Views/Student/Schedule.cshtml
+Auto-merging Web.config
+CONFLICT (content): Merge conflict in Web.config
+Auto-merging packages.config
+CONFLICT (content): Merge conflict in packages.config
+Automatic merge failed; fix conflicts and then commit the result.
