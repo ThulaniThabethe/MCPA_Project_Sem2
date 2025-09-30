@@ -150,6 +150,19 @@
         app:layout_constraintTop_toBottomOf="@+id/password_match_message" />
 
     <TextView
+        android:id="@+id/already_registered_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Already have an account? Login"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_account_button" />
+
+    <TextView
         android:id="@+id/password_tips_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -160,7 +173,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clear_button" />
+        app:layout_constraintTop_toBottomOf="@+id/already_registered_link" />
 
     <TextView
         android:id="@+id/tip1"

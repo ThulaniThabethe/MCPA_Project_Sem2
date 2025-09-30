@@ -205,3 +205,14 @@ CREATE TABLE promotions (
     is_active BIT DEFAULT 1
 );
 GO
+
+
+--Alter users Table
+ALTER TABLE `users`
+ADD COLUMN `title` VARCHAR(10) NULL AFTER `password_hash`;
+
+ALTER TABLE `users`
+ADD COLUMN `first_name` VARCHAR(100) NULL AFTER `title`;
+
+ALTER TABLE `users`
+ADD COLUMN `last_name` VARCHAR(100) NULL AFTER `first_name`;
